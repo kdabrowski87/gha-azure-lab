@@ -15,6 +15,10 @@ jobs:
       - name: Przywitanie
         run: echo "Cześć z runnera! Commit ${{ github.sha }} od ${{ github.actor }}"
 
+      - name: nazwa eventu 
+        run: |
+          echo "Event: ${{ github.event_name }}"
+        
       - name: Co jest na maszynie?
         run: |
           uname -a
