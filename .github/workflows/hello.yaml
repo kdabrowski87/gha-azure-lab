@@ -27,6 +27,9 @@ jobs:
           az version
           ls -la
 
+      - name: Wymuszenie błędu
+        run: exit 1
+
   po-hello:
     runs-on: ubuntu-latest
     needs: hello            # wystartuje dopiero, gdy 'hello' się powiedzie
