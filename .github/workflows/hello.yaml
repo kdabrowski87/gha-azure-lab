@@ -1,0 +1,28 @@
+name: Hello Actions
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # ręczne uruchomienie z zakładki Actions
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobierz kod repo
+        uses: actions/checkout@v7
+
+      - name: Przywitanie
+        run: echo "Cześć z runnera! Commit ${{ github.sha }} od ${{ github.actor }}"
+
+      - name: Co jest na maszynie?
+        run: |
+          uname -a
+          az version
+          ls -la
+
+  po-hello:
+    runs-on: ubuntu-latest
+    needs: hello            # wystartuje dopiero, gdy 'hello' się powiedzie
+    steps:
+      - run: echo "Job 'hello' zakończony sukcesem"
